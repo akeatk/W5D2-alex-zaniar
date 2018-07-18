@@ -1,0 +1,9 @@
+<ul class="sub-list">
+  <% Sub.all.each do |sub| %>
+    <li>
+      <a href="<%= sub_url(sub) %>"> <%= sub.title %> </a>
+      <description> <%= sub.description %> </description>
+      <info> Created on: <%= DateTime.parse(sub.created_at.to_s).to_s %></info>
+    </li>
+  <% end %>
+</ul>

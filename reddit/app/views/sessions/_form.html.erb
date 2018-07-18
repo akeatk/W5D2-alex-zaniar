@@ -1,0 +1,11 @@
+<form class="login-from" action="<%=session_url %>" method="post">
+<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <div>
+    <input type="text" name="user[username]" placeholder='username'>
+    <input type="password" name="user[password]" placeholder='password'>
+  </div>
+  <div>
+    <input type="radio" name="remember">
+    <input type="submit" value="login">
+  </div>
+</form>

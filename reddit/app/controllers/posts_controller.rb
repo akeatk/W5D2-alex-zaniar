@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     post.author_id = current_user.id
+    
     if post.save
       redirect_to post_url(post)
     else
@@ -33,7 +34,7 @@ class PostsController < ApplicationController
   
   def destroy
     @post.destroy
-    redirect_to to subs_url(@post.sub_id)
+    redirect_to to subs_url(@post.subs.first)
   end
   
   
@@ -44,6 +45,6 @@ class PostsController < ApplicationController
   
 
   def post_params
-    params.require(:post).permit(:title, :sub_id, :content, :url)
+    params.require(:post).permit(:title, :content, :url, :sub_ids)
   end
 end

@@ -3,12 +3,43 @@
   <head>
     <title>Reddit</title>
     <%= csrf_meta_tags %>
-
+    
+    <%= stylesheet_link_tag    'reset', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
+  <header>
+    <nav>
+      <ul>
+        <% Sub.all.each do |sub| %>
+          <li> <a href="<%= sub_url(sub) %>"><%= sub.title %></a></li>
+          <li style="color:grey;">-</li>
+        <% end %>  
+      </ul>
+      <a href="<%= subs_url %>">MORE »</a>
+    </nav>
+    
+    <div class="banner">
+      <a href="<%= subs_url %>"><%=image_tag('reddit-logo.png')%></a>
+      
+      <div class='user-auth'>
+        <%if current_user %>
+          
+        <% else %>
+          Want to join? <a href="<%=new_session_url%>">Log in</a> or <a href="<%= new_user_url %>">sign up</a> in seconds.
+        <% end %> 
+      </div>
+    </div>
+    
+  </header>
 
-  <body>
-    <%= yield %>
+  <body class='group'>
+    <main>
+      <%= yield %>
+    </main>
+    <sidebar>
+      <%= render "sessions/form" %>
+    </sidebar>
   </body>
 </html>
